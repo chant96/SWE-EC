@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.9.0.final using JasperReports Library version 6.9.0-cb8f9004be492ccc537180b49c026951f4220bf3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="EstudiantesMorosos" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f19db1d2-d7ff-46ca-b26a-8d9f56580696">
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="GlobalMiningTrujilloMVC"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Dataset1" uuid="8b38b022-280f-4c38-8227-f8d45c0a9ce4">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="GlobalMiningTrujilloMVC"/>
+		<queryString language="SQL">
+			<![CDATA[select e.dni,CONCAT(e.apellidos,' ',e.nombres) as estudiante, c.nombre,i.fecha_actual,monto_total,monto_restante from inscripcion i 
+inner join estudiante e on(i.estudiante_dni=e.dni) 
+inner join curso c on(i.curso_id=c.id)
+where monto_restante>0]]>
+		</queryString>
+		<field name="dni" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="dni"/>
+			<property name="com.jaspersoft.studio.field.label" value="dni"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="estudiante"/>
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="estudiante" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="estudiante"/>
+			<property name="com.jaspersoft.studio.field.label" value="estudiante"/>
+		</field>
+		<field name="nombre" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="nombre"/>
+			<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="curso"/>
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="fecha_actual" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="fecha_actual"/>
+			<property name="com.jaspersoft.studio.field.label" value="fecha_actual"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="inscripcion"/>
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="monto_total" class="java.lang.Float">
+			<property name="com.jaspersoft.studio.field.name" value="monto_total"/>
+			<property name="com.jaspersoft.studio.field.label" value="monto_total"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="inscripcion"/>
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="monto_restante" class="java.lang.Float">
+			<property name="com.jaspersoft.studio.field.name" value="monto_restante"/>
+			<property name="com.jaspersoft.studio.field.label" value="monto_restante"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="inscripcion"/>
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<group name="dni">
+			<groupExpression><![CDATA[$F{dni}]]></groupExpression>
+		</group>
+		<group name="estudiante">
+			<groupExpression><![CDATA[$F{estudiante}]]></groupExpression>
+		</group>
+		<group name="nombre">
+			<groupExpression><![CDATA[$F{nombre}]]></groupExpression>
+		</group>
+		<group name="fecha_actual">
+			<groupExpression><![CDATA[$F{fecha_actual}]]></groupExpression>
+		</group>
+		<group name="monto_total">
+			<groupExpression><![CDATA[$F{monto_total}]]></groupExpression>
+		</group>
+		<group name="monto_restante">
+			<groupExpression><![CDATA[$F{monto_restante}]]></groupExpression>
+		</group>
+	</subDataset>
+	<queryString>
+		<![CDATA[select e.dni,CONCAT(e.apellidos,' ',e.nombres) as estudiante, c.nombre,i.fecha_actual,monto_total,monto_restante from inscripcion i 
+inner join estudiante e on(i.estudiante_dni=e.dni) 
+inner join curso c on(i.curso_id=c.id)
+where monto_restante>0]]>
+	</queryString>
+	<field name="dni" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="dni"/>
+		<property name="com.jaspersoft.studio.field.label" value="dni"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="estudiante"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="estudiante" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="estudiante"/>
+		<property name="com.jaspersoft.studio.field.label" value="estudiante"/>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="curso"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha_actual" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="fecha_actual"/>
+		<property name="com.jaspersoft.studio.field.label" value="fecha_actual"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="inscripcion"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="monto_total" class="java.lang.Float">
+		<property name="com.jaspersoft.studio.field.name" value="monto_total"/>
+		<property name="com.jaspersoft.studio.field.label" value="monto_total"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="inscripcion"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="monto_restante" class="java.lang.Float">
+		<property name="com.jaspersoft.studio.field.name" value="monto_restante"/>
+		<property name="com.jaspersoft.studio.field.label" value="monto_restante"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="inscripcion"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="66" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="802" height="40" uuid="687e756d-7b78-41dc-9e4e-5162c20a3cf1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[GLOBAL MINING TRUJILLO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="40" width="802" height="20" uuid="5a283ddd-65a3-4fa7-a779-f63994ce9893"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Trujillo - La Libertad Av. España 1597-1547, Trujillo 13001]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="39" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="4" width="802" height="30" uuid="e3c5a12a-6ebe-4e18-886e-3dedddb98542"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE ESTUDIANTES MOROSOS]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="157" splitType="Stretch">
+			<componentElement>
+				<reportElement x="10" y="10" width="792" height="90" uuid="f3933ba7-ebb1-4b0e-8001-190c1040ea6f">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+					<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
+					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
+					<property name="com.jaspersoft.studio.table.style.detail" value="Table_TD"/>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Dataset1" uuid="5969051e-ecac-4c40-abba-941aa2feed0a">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="60" uuid="d3046792-0e57-45c5-98f7-cb636d026ae4">
+						<jr:tableHeader style="Table_TH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="60" height="30" uuid="9667a739-6931-42a2-afea-0abc928e720f"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[DNI]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="60" height="30" uuid="e96f8413-b0b1-4ec8-8360-c868df90cd42"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{dni}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="250" uuid="89ad1382-30b2-414a-9b60-5aafe6fa7d96">
+						<jr:tableHeader style="Table_TH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="250" height="30" uuid="2bfd14d8-4ce5-4fed-8a85-10f88bd46e5d"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Estudiante]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="250" height="30" uuid="47e0fcf1-15f2-4d45-a0bb-969218b07d0f"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{estudiante}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="240" uuid="19b568cb-fe42-4b60-9e6e-235875783e39">
+						<jr:tableHeader style="Table_TH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="240" height="30" uuid="fa1ece6a-d54c-44d3-b1e3-dcb331f4dd30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Curso]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="240" height="30" uuid="289cb02c-3885-4f95-8999-0422e2758630"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="79" uuid="d311206a-a4d0-44e4-a3b1-f2c91456c147">
+						<jr:tableHeader style="Table_TH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="79" height="30" uuid="5706f86d-2c1e-4be4-bd55-53fc99233fb6"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Ultimo Pago]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="79" height="30" uuid="20ccbf2e-c042-450e-81c3-86c61a97af85"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{fecha_actual}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="71" uuid="46f9b331-cc51-445e-befd-efea3530f29a">
+						<jr:tableHeader style="Table_TH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="71" height="30" uuid="fb6580c9-7b22-4a3b-ac7f-dfb7f1b5add2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[M. Inicial]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="71" height="30" uuid="6b2803e1-d4a8-4373-b7a7-a1a1592f509c"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{monto_total}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="80" uuid="1c4296d2-e67c-4523-a036-d11a13c516c9">
+						<jr:tableHeader style="Table_TH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="80" height="30" uuid="5d352229-c70d-4bef-83c9-24894b4ce6ba"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[M. Restante]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="80" height="30" uuid="db34e761-ebd9-477e-ba87-25a8cbaf7b3d"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{monto_restante}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</columnHeader>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

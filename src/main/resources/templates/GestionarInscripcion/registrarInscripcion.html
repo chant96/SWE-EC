@@ -1,0 +1,293 @@
+ <div th:fragment="registrarInscripcion" id="registrarInscripcion">
+ 
+ 
+ <!-- Main-body start -->
+      <div class="main-body">
+          <div class="page-wrapper">
+          
+           <!-- Page body start -->
+              <div class="page-body">
+                  <div class="row">
+                      <div class="col-md-12">
+                          <div class="card">
+                          
+                             <div class="card-header">
+                                  <h5>Gestionar <b>Inscripcion</b></h5>
+                                  <!--<span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>-->
+                                     <div class="card-header-right">
+                              			<a th:href="@{/Inscripcion/Paginado}" class="mr-2"><i class="ti-shift-left"></i> Atras</a>
+                              		</div>
+                              </div>
+                          
+	                          	<div class="card-block">
+	                          		
+						                <form th:action="@{/Inscripcion/Guardar}" id="frmInscripcion" name="frmInscripcion" th:object=${inscripcion} method="post">
+						
+										<input type="text"  class="form-control d-none" th:field="*{id}" id="idInscripcion" name="id">
+							                <div>
+							                    <h4><b>Datos del Estudiante</b></h4>
+							                    <div class="form-row">
+							                        <div class="col-md-2 mb-3">
+							                            <label>DNI</label>
+							                            <input type="text" th:readonly="${edicion}" class="form-control" th:field="*{estudiante.dni}" placeholder="Ingrese un dni" id="txtDni" name="dni" required="">
+							                        </div>
+							                        <div class="col-md-1 mb-3">
+							                            <label>&nbsp;</label>
+							                            
+							                            <button onclick="buscarEstudiante()" type="button" class="btn btn-primary form-control" id="btnBuscarEstudiante">
+							                                <i class="ti-search"></i>Buscar
+							                            </button>
+							                        </div>
+							                    </div>
+							                    <div class="form-row">
+							                        <div class="col-md-3 mb-3">
+							                            <label>Apellidos</label>
+							                            <input readonly="readonly" type="text" th:field="*{estudiante.nombres}" class="form-control" id="txtApellidos">
+							                        </div>
+							                        <div class="col-md-3 mb-3">
+							                            <label>Nombres</label>
+							                            <input readonly="readonly" type="text" th:field="*{estudiante.apellidos}" class="form-control" id="txtNombres">
+							                        </div>
+							                       <div class="col-md-3 mb-3">
+							                            <label>Fecha de Nacimiento</label>
+							                            <input readonly="readonly" type="date" th:field="*{estudiante.fechaNacimiento}" class="form-control" id="txtDate">
+							                        </div>
+							                      <div class="col-md-3 mb-3">
+							                            <label>Telefono</label>
+							                            <input readonly="readonly" type="text" th:field="*{estudiante.telefono}" class="form-control" id="txtTelefono">
+							                        </div>
+							                      <div class="col-md-4 mb-3">
+							                            <label>Direccion</label>
+							                            <input readonly="readonly" type="text" th:field="*{estudiante.direccion}" class="form-control" id="txtDireccion">
+							                        </div>
+							                      <div class="col-md-3 mb-3">
+							                            <label>Distrito</label>
+							                            <input  type="text"  readonly="readonly" th:field="*{estudiante.distrito}" class="form-control" id="txtDistrito" >
+							                        </div>
+							                      <div class="col-md-3 mb-3">
+							                            <label>Provincia</label>
+							                            <input  type="text" readonly="readonly" th:field="*{estudiante.provincia}" class="form-control" id="txtProvincia" >
+							                        </div>
+							                      <div class="col-md-2 mb-3">
+							                            <label>Departamento</label>
+							                            <input  type="text" readonly="readonly" th:field="*{estudiante.departamento}" class="form-control" id="txtDepartamento" >
+							                        </div>
+							                       
+							                    </div>
+							                    <!-- <input  type="text" th:readonly="${edicion}" th:field="*{estudiante.departamento}" class="form-control" id="txtDepartamento" required=""> -->
+							             </div>
+							             
+							             <input type="text" id="txt_monto" class="d-none" value="0">
+							             <section class="container-fluid mb-4">
+							             
+								             <div class="row">
+									             	<div class="col-lg-2 border mt-2 ">
+								             	
+								             			<h4 class="mt-2"><b>Tipo de Maquinaria</b></h4>
+								             			
+	
+									                      <div class="ml-4 mt-2" id="inptMaquinarias">                
+										                      
+										                      <div th:each="maquina: ${listaMaquina}" class="form-check" >
+										                        <input th:disabled="${edicion}" th:field="*{maquinas}"   th:value=${maquina.id}  class="form-check-input CheckedAK" type="checkbox" name="maquinas" th:id=${maquina.id}>
+										                        <label class="form-check-label" th:text="${maquina.tipoDeMaquina}" th:for=${maquina.id}></label>
+										                      </div>
+										                    
+									                     </div>  
+									                     
+									                    
+								                     <!-- th:checked="*{maquina.id}==${maquina.id} ? 'checked'" -->
+								                    
+								             		</div>
+								             		
+								             		<div class="col-lg-4 border  mt-2">
+	
+								             			<!--CURSOS-->
+								             
+									                    <h4 class="mt-2"><b>Cursos</b></h4>
+									                    
+									                    <ul class="lst-cursos" id="lstCursos" style="overflow-y: auto; height: 200px;">
+										                    <a th:each="curso: ${listaCursos}"  th:classappend="${curso.id}==*{curso.id} ? 'active text-white'  : ''"  th:field="*{curso.id}" th:value=${curso.id}  type="checkbox" class="list-group-item list-group-item-action" th:id=${curso.id} >
+										                      <div class="d-flex w-100 justify-content-between">
+										                      </div>
+										                      <p  th:text="${curso.nombre}" class="mb-1"></p>
+										                    </a>
+										                      
+										                    
+								                   		</ul>
+								             			
+									             	</div>
+									             	
+									             	<div class="col-lg-2 border mt-2">
+									             	
+									             	
+									             	    <h4 class="mt-2"><b>Turno</b></h4>
+	
+									                    
+									                      <ul class="text-align ml-4" >
+									                      
+									                     	  <div class="form-check">
+										                        <input th:disabled="${edicion}" th:field="*{turno}" th:value="L"  class="form-check-input CheckedTrn" type="checkbox" name="turno" id="L" >
+										                        <label class="form-check-label" for="L">
+										                          LUNES
+										                        </label>
+										                      </div>
+									                    
+									                     	  <div class="form-check">
+										                        <input th:disabled="${edicion}" th:field="*{turno}"  th:value="M"  class="form-check-input CheckedTrn" type="checkbox" name="turno" id="M" >
+										                        <label class="form-check-label" for="M">
+										                          MARTES
+										                        </label>
+										                      </div>
+										                      
+										                       <div class="form-check">
+										                        <input th:disabled="${edicion}" th:field="*{turno}"  th:value="X"  class="form-check-input CheckedTrn" type="checkbox" name="turno" id="X" >
+										                        <label class="form-check-label" for="X">
+										                          MIERCOLES
+										                        </label>
+										                      </div>
+										                      
+										                       <div class="form-check">
+										                        <input th:disabled="${edicion}" th:field="*{turno}" th:value="J"  class="form-check-input CheckedTrn" type="checkbox" name="turno" id="J" >
+										                        <label class="form-check-label" for="J">
+										                          JUEVES
+										                        </label>
+										                      </div>
+										                      
+										                       <div class="form-check">
+										                        <input th:disabled="${edicion}" th:field="*{turno}"  th:value="V"  class="form-check-input CheckedTrn" type="checkbox" name="turno" id="V" >
+										                        <label class="form-check-label" for="V">
+										                          VIERNES
+										                        </label>
+										                      </div>
+										                      
+										                       <div class="form-check">
+										                        <input th:disabled="${edicion}" th:field="*{turno}"  th:value="S"  class="form-check-input CheckedTrn" type="checkbox" name="turno" id="S" >
+										                        <label class="form-check-label" for="S">
+										                          SABADO
+										                        </label>
+										                      </div>
+										                      
+										                      <div class="form-check">
+										                        <input th:disabled="${edicion}" th:field="*{turno}" th:value="D"  class="form-check-input CheckedTrn" type="checkbox" name="turno" id="D" >
+										                        <label class="form-check-label" for="D">
+										                          DOMINGO
+										                        </label>
+										                      </div>
+									                      
+									                     </ul>
+									                     
+									             	
+									             	
+								             		</div>
+								             		
+								             		
+								             		<div class="col-lg-2 border mt-2">
+								             		
+								             			 <h4 class="mt-2"><b>Promocion</b></h4>
+									                    <div class="form-check">
+									                       
+									                       <div class="list-group" >
+									                       <label class="form-check-label" th:for="*{anio} + -I">
+									                          <input th:disabled="${edicion}" th:value=${promocion} th:text="' '+*{anio} + -I" class="form-check-input" type="radio" name="promocion" th:id="*{anio}+ -I" checked>
+									                        </label>
+									                        <label  class="form-check-label" th:for="*{anio} + -II">
+									                          <input th:disabled="${edicion}" th:checked="*{promocion}==*{anio} + '-II' ? 'checked'" th:text="' '+*{anio} + -II" th:value=${promocion} class="form-check-input " type="radio" name="promocion" th:id="*{anio}+ -II">
+									                        </label>
+									                      <label class="form-check-label" th:for="*{anio} + -III">
+									                          <input th:disabled="${edicion}" th:checked="*{promocion}==*{anio} + '-III' ? 'checked'" th:text="' '+*{anio} + -III" th:value=${promocion} class="form-check-input " type="radio" name="promocion" th:id="*{anio}+ -III">
+									                          
+									                        </label>
+									                      <label class="form-check-label" th:for="*{anio} + -IV">
+									                          <input th:disabled="${edicion}" th:checked="*{promocion}==*{anio} + '-IV' ? 'checked'" th:text="' '+*{anio} + -IV" th:value=${promocion} class="form-check-input " type="radio" name="promocion" th:id="*{anio}+ -IV">
+									                          
+									                        </label>
+									                      <label class="form-check-label" th:for="*{anio} + -V">
+									                          <input th:disabled="${edicion}" th:checked="*{promocion}==*{anio} + '-V' ? 'checked'" th:text="' '+*{anio} + -V" th:value=${promocion} class="form-check-input " type="radio" name="promocion" th:id="*{anio}+ -V">
+									                         
+									                        </label>
+									                      <label class="form-check-label" th:for="*{anio} + -VI">
+									                          <input th:disabled="${edicion}" th:checked="*{promocion}==*{anio} + '-VI' ? 'checked'" th:text="' '+*{anio} + -VI" th:value=${promocion} class="form-check-input " type="radio" name="promocion" th:id="*{anio}+ -VI">
+									                          
+									                        </label>
+									                        
+									                      </div>
+									                      
+									                   </div>
+								             		
+								             		</div>
+								             		
+								             		<div class="col-lg-2 mt-2 border">
+								             			
+								             			 <!--COSTOS-->   
+										              <h4 class="my-2"><b>Pago</b></h4>
+										               <div class="row justify-content-center">
+
+										                  <div class="col-md-8 ">
+											                  	 <div class="form-group">
+												                  	<label for="txtPagoInscripcion" class=" text-center form-label"> Inicial (Inscripcion + Maquina)</label>
+												                    <input th:field="*{montoTotal}" type="text" class="form-control text-center" id="txtxMontoTotal"  readonly="readonly">
+												                  </div>
+											                    
+											               </div>
+											               
+											               <div  class="col-md-8"  th:classappend="${edicion} ? '' : d-none">
+											                  	 <div class="form-group">
+												                  	<label for="txtPagoInscripcion" class=" text-center form-label"> Resta:</label>
+												                    <input th:field="*{montoRestante}" type="text" class="form-control text-center" id="txtMontoRestante" readonly="readonly">
+												                  </div>
+											                    
+											               </div>
+											               
+											               <div class="col-md-8 ">
+											                  	 <div class="form-group">
+												                  	<label for="txtPagoInscripcion" class=" text-center form-label"> Pago de cuota</label>
+												                    <input type="text" class="form-control text-center" id="txtxPagoCuota" placeholder="0.0" required="">
+												                  </div>
+											                    
+											               </div>
+										                 
+										                </div>
+										               
+										                
+								             			
+								             		</div>
+								             	
+								                
+								             </div>
+								             
+							             </section>
+							             
+		               
+					                    <div class="container-fluid h-100">
+					                        <div class="row w-100 align-items-center">
+					                            <div class="col text-center">
+					                              <button id="btnGenerarOrden" class="btn btn-primary" type="button" data-dismiss="modal"
+					                                        onclick="guardarInscripcion()"> <i class="ti-save"></i> Generar Inscripcion
+					                                </button>
+					                                <a  th:href="@{/Inscripcion/Paginado}" type="button" class="btn btn-danger"
+					                                        data-dismiss="modal">Cancelar
+					                                </a>
+					                                
+					                            </div>
+					                        </div>
+					                    </div>
+				                    
+
+						             </div>
+						              
+									</form>
+					                   
+					                </div>
+                          
+                          	</div>
+                          
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          
+          
+     </div>
+          
+

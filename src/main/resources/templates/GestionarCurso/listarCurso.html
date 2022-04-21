@@ -1,0 +1,117 @@
+
+<div th:fragment="listarCurso" id="listarCurso">
+
+  	<!-- Page-header end -->
+     <div class="pcoded-inner-content">
+         <!-- Main-body start -->
+         <div class="main-body">
+             <div class="page-wrapper">
+                 <!-- Page-body start -->
+                 <div class="page-body">
+                     <!-- Basic table card start -->
+                     <div class="card">
+                         <div class="card-header">
+                             
+	                           <div class="btn-group " role="group" data-toggle="tooltip" data-placement="top" title="" data-original-title=".btn-xlg">
+					               <a th:href="@{/Curso/Guardar}" type="button" class="btn btn-primary btn-sm waves-effect waves-light"><i class="ti-plus"></i> Nuevo</a>
+					           </div>
+                                     
+                               <div class="card-header-right">
+                                   <ul class="list-unstyled card-option">
+                                       <li><i class="fa fa fa-wrench open-card-option"></i></li>
+                                       <li><i class="fa fa-window-maximize full-card"></i></li>
+                                       <li><i class="fa fa-minus minimize-card"></i></li>
+                                       <li><i class="fa fa-refresh reload-card"></i></li>
+                                       <li><i class="fa fa-trash close-card"></i></li>
+                                   </ul>
+                               </div>
+                       	 </div>
+                         <div class="card-block table-border-style">
+                         
+	                         
+	                         
+		                         <div class="table-responsive">
+	                                 <table class="table">
+	                                     <thead>
+	                                         <tr>                                                        
+	                                             <th>Nombre</th>
+	                                             <th>Tipo de Curso</th>
+	                                             <th>Instructor</th>
+												 <th>Dia</th>
+	                                             <th>Turno</th>
+	                                             <th>Opciones</th>
+	                                         </tr>
+	                                     </thead>
+	                                     <tbody>
+	                                         <tr th:each="curso: ${lista}">
+	                                         	<td id="idCurso" class="d-none" th:text="${curso.id}"></td>
+	                                         	<td th:text="${curso.nombre}"></td>
+	                                         	<td th:text="${curso.tipoDeCurso}"></td>
+	                                         	<td th:text="${curso.instructor.apellidos +' '+curso.instructor.nombres}"></td>
+	                                         	<td th:text="${curso.horario.dia}"></td>
+	                                         	<td th:text="${curso.horario.turno}"></td>
+	                                         	<td>
+	                                         	<a class="btn btn-sm btn-warning" th:href="@{/Curso/Editar/{id} (id=${curso.id})}" ><i class="ti-pencil"></i></a>
+	                                         	<button class="btn btn-sm btn-danger" id="borrarCurso"><i class="ti-trash"></i></button>
+	                                         	</td>
+	                                         </tr>
+	                                     </tbody>
+	                                 </table>
+		                          </div>
+	                         
+                         </div>
+                                 
+                          <!-- INICIO FOOTER   -->
+                                    
+                                    <div class="card-footer">
+                                   
+                                    <hr style="margin-top: -40px;">
+                                    
+                                     <main role="main" class="container-fluid mt-4">     
+                                       
+								          <div class="row text-center justify-content-center">   
+									          <div class="col-12">
+									         
+									            <label for="" class="float-left" th:text="${info}"></label>
+									
+									             <!--SELECT-->
+									              <select onchange="pageSize(3)"  class="mx-auto" id="cmbtamanioPaginaCurso"  style="height: 30px; margin-top: -5px;">
+									                  <option th:value="10" th:selected="10 == ${selectedPageSize}" >&nbsp;10&nbsp;</option>
+									                  <option th:value="30" th:selected="30 == ${selectedPageSize}" >&nbsp;30&nbsp;</option>
+									                  <option th:value="50" th:selected="50 == ${selectedPageSize}" >&nbsp;50&nbsp;</option>
+									              </select>
+									        
+									               <div class=" float-right" style="margin-top: -10px;">
+		                                     
+			                                     	<nav aria-label="Pagination">
+													  <ul class="pagination justify-content-end">
+													   <li class="page-item" th:classappend="${prev == 0 ? 'disabled':''}">
+													   	    <a class="page-link" th:href="@{|?page=${prev}&pageSize=${tamanioPaginado}|}">Anterior</a>
+													   </li>
+													    <li class="page-item" th:each="page : ${pages}" th:classappend="${current == page ? 'active':''}">
+													    	<a class="page-link" th:href="@{|?page=${page}&pageSize=${tamanioPaginado}|}" th:text="${page}"></a>
+													    </li>
+													    <li class="page-item" th:classappend="${current == last ? 'disabled':''}">
+													   	    <a class="page-link" th:href="@{|?page=${next}&pageSize=${tamanioPaginado}|}">Siguiente</a>
+													   </li>  
+													  </ul>
+													</nav>	  
+													                              
+			                                     </div>
+			                                     
+									          </div>
+								          </div>
+								       </main>
+								                                    
+                                    </div>  
+                                    
+                                    <!-- FIN FOOTER   --> 
+                         
+                         
+                     </div>
+                  </div>
+             </div>
+        </div>
+	</div>
+</div>
+

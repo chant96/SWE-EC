@@ -1,0 +1,118 @@
+<div th:fragment="listarReportes" id="listarReportes">
+
+ 	   <!-- Page-header end -->
+        <div class="pcoded-inner-content">
+            <!-- Main-body start -->
+            <div class="main-body">
+                <div class="page-wrapper">
+                    <!-- Page-body start -->
+                    <div class="page-body">
+                        <!-- Basic table card start -->
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>Reportes</h4>
+                               		</div>
+                               		
+                               		<div class="card-block">
+                               		
+                               		
+                               		
+                               		<div class="row">
+                               		
+	                               		<div class="col-12">
+	                               		
+	                               			<a th:href="@{/Reporte/Morosos}" target="_blank" class="btn btn-primary"><i class="ti-image"></i> Estudiantes Morosos</a>
+		                               		<button onclick="modalMorososMaquina()" class="btn btn-primary"><i class="ti-image"></i> Estudiantes Morosos Por Maquina</button>
+		                               		<button onclick="modalMorososCurso()" class="btn btn-primary"><i class="ti-image"></i> Estudiantes Morosos Por Curso</button>
+	                               		</div>
+                               		
+                               		</div>
+                               		
+                               		
+                               		</div>
+                            	</div>
+                       </div>
+                  </div>
+			</div>
+		</div>
+		
+		
+		<!-- Modal Reporte por tipo de maquina -->
+<div class="modal fade modal-icon" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="modalMorososMaquina" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Reporte por tipo de maquina</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+					
+					<div class="col-12">
+					
+						<div class="form-group " >
+                         
+                            <label >Maquina</label>
+                          	<select  name="cmbMaquina" id="cmbMaquina" class="form-control cmbMaquina"  required="">
+                                     <option  value="">SELECCIONE</option>
+                                     <option  th:each="maquina: ${listaMaquina}" th:text="${maquina.tipoDeMaquina}" th:value="${maquina.id}"></option>  
+                            </select>
+                         </div>
+                         				
+					</div>
+					
+				
+					
+                </div>
+            </div>
+            <div class="modal-footer">
+            	<button type="button" class="btn btn-primary" onclick="reporteMorososMaquina()">Buscar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Reporte por tipo de curso -->
+<div class="modal fade modal-icon" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="modalMorososCurso" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Reporte por tipo de curso</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+					
+					<div class="col-12">
+						<div class="form-group">
+						
+							<label >Curso</label>
+							<select style="font-size: 14px;"  name="cmbCurso" id="cmbCurso" class="form-control cmbCurso"  required="">
+                                     <option  value="">SELECCIONE</option>
+                                     <option  th:each="curso: ${listaCurso}" th:text="${curso.nombre}" th:value="${curso.id}"></option>  
+                            </select>
+                            
+						</div>
+					</div>
+					
+				
+					
+                </div>
+            </div>
+            <div class="modal-footer">
+            	<button type="button" class="btn btn-primary" onclick="reporteMorososCurso()">Buscar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</div>
+                                        

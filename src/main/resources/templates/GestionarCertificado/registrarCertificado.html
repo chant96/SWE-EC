@@ -1,0 +1,70 @@
+<div th:fragment="registrarCertificado" id="registrarCertificado">
+
+ 	 <!-- Main-body start -->
+      <div class="main-body">
+          <div class="page-wrapper">
+            
+              <!-- Page body start -->
+              <div class="page-body">
+                  <div class="row">
+                      <div class="col-md-12">
+                          <div class="card">
+                              <div class="card-header">
+                                  <h5>Registro de Certificado</h5>
+                                  <!--<span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>-->
+                                     <div class="card-header-right">
+                              			<a th:href="@{/Certificado/Paginado}" class="mr-2"><i class="ti-shift-left"></i> Atras</a>
+                              		</div>
+                              </div>
+                           
+                              <div class="card-block">
+                              
+                                  <form action="" th:action="@{/Certificado/Guardar}" id="frmCertificado" name="frmCertificado" th:object=${certificado} method="post" class="form-material row" >
+
+                                   	<input th:field="*{id}" type="text" name="id" id="id"  class="d-none form-control" required="">
+                               		<div class="col-md-3">
+                                      <div class="form-group form-default">
+                                      	 <input type="text" name="nombreInstitucion" id="nombreInstitucion" th:field="*{nombreInstitucion}" class="form-control" required="">
+                                          <span class="form-bar"></span>
+                                          <label class="float-label">Institucion</label>
+                                      </div>
+                                   	</div>
+                                   	
+                                   	<div class="col-md-3">
+                                      <div class="form-group form-default">
+                                      	 <input type="text" name="especialidad" id="especialidad" th:field="*{especialidad}"  class="form-control" required="">
+                                          <span class="form-bar"></span>
+                                          <label class="float-label">Especialidad</label>
+                                      </div>
+                                   	</div>
+                                   	
+                                   	<div class="col-md-1">
+                                   	
+                                   		<div class="form-group" style="margin-top: -10px">
+                                   		
+                                   			<label >Fecha</label>
+                                   			<input type="date"  id="fecha" name="fecha" th:field="*{fecha}">
+                                   			
+                                   		</div>
+                                   		
+                                   	</div>
+
+									<hr/>
+									
+                                   	<div class="col-md-12">
+                                   	
+                                   		<button type="button" onclick="guardarCertificado()" class="btn waves-effect waves-light btn-success btn-outline-success"> <i class="ti-save"></i> Guardar</button>
+                                   		
+                                   	</div>
+                                  </form>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+               </div>
+               <!-- Page body end -->
+           </div>
+       </div>
+       <!-- Main-body end -->
+	
+</div>

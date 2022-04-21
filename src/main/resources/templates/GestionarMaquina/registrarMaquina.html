@@ -1,0 +1,67 @@
+<div th:fragment="registrarMaquina" id="registrarMaquina">
+
+ 	 <!-- Main-body start -->
+      <div class="main-body">
+          <div class="page-wrapper">
+            
+              <!-- Page body start -->
+              <div class="page-body">
+                  <div class="row">
+                      <div class="col-md-12">
+                          <div class="card">
+                              <div class="card-header">
+                                  <h5>Registro de Maquina</h5>
+                                  <!--<span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>-->
+                                     <div class="card-header-right">
+                              			<a th:href="@{/Maquina/Paginado}" class="mr-2"><i class="ti-shift-left"></i> Atras</a>
+                              		</div>
+                              </div>
+                           
+                              <div class="card-block">
+                              
+                                  <form action="" th:action="@{/Maquina/Guardar}" name="frmMaquina" id="frmMaquina" th:object=${maquina} method="post" class="form-material row" >
+
+                                   	<input th:field="*{id}" type="text" name="id" id="id"  class="d-none form-control" required="">
+                               		<div class="col-md-3">
+                                      <div class="form-group form-default">
+                                      	 <input type="text" name="tipoDeMaquina" id="tipoDeMaquina" th:field="*{tipoDeMaquina}" class="form-control" required="">
+                                          <span class="form-bar"></span>
+                                          <label class="float-label">Tipo</label>
+                                      </div>
+                                   	</div>
+                                   	
+                                   	<div class="col-md-1">
+                                      <div class="form-group form-default">
+                                      	 <input type="text" name="montoMaquina" id="montoMaquina" th:field="*{montoMaquina}" class="form-control" required="">
+                                          <span class="form-bar"></span>
+                                          <label class="float-label">Monto</label>
+                                      </div>
+                                   	</div>
+                                   	
+                                   	<div class="col-md-3">
+                                      <div class="form-group form-default">
+                                      	 <input type="text" name="descripcion" id="descripcion" th:field="*{descripcion}"  class="form-control" required="">
+                                          <span class="form-bar"></span>
+                                          <label class="float-label">Descripcion</label>
+                                      </div>
+                                   	</div>
+
+									<hr/>
+									
+                                   	<div class="col-md-12">
+                                   	
+                                   		<button type="button" onclick="guardarMaquina()" class="btn waves-effect waves-light btn-success btn-outline-success"> <i class="ti-save"></i> Guardar</button>
+                                   		
+                                   	</div>
+                                  </form>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+               </div>
+               <!-- Page body end -->
+           </div>
+       </div>
+       <!-- Main-body end -->
+	
+</div>

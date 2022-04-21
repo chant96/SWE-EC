@@ -1,0 +1,151 @@
+<div th:fragment="realizarInscripcion" id="realizarInscripcion">
+    <div class="container-fluid">
+                <!-- Page Heading -->
+                <h1>Gestionar <b>Inscripcion</b></h1>
+                <br>
+
+                <div>
+                    <h2><b>Estudiante</b></h2>
+                    <div class="form-row">
+                        <div class="col-md-3 mb-3">
+                            <label>DNI</label>
+                            <input type="text" class="form-control" placeholder="123" id="inputRUC">
+                        </div>
+                        <div class="col-md-1 mb-3">
+                            <label>&nbsp;</label>
+                            <button class="btn btn-primary form-control" id="btnFindProveedor">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-4 mb-3">
+                            <label>Razon Social</label>
+                            <input disabled type="text" class="form-control" id="inputRazonSocial">
+                        </div>
+                        <div class="col-md-8 mb-3">
+                            <label>Direccion</label>
+                            <input disabled type="text" class="form-control" id="inputDireccion">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <br>
+                    <h2><b>Datos</b></h2>
+                    <div class="form-row">
+                        <div class="col-md-4 mb-3">
+                            <label>Fecha Envio</label>
+                            <input type="date" class="form-control"
+                                   placeholder="Fecha Envio" id="fechaEnvio">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Fecha Requerida</label>
+                            <input type="date" class="form-control"
+                                   placeholder="Fecha Entrega" id="fechaRequerida">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Lugar de Entrega</label>
+                            <input type="text" class="form-control"
+                                   placeholder="Apartamento,Estudio..." id="lugarEntrega">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-4 mb-3">
+                            <label>Estado</label>
+                            <select class="form-control" placeholder="Estado" required id="estado">
+                                <option value="Realizado" selected>Realizado</option>
+                                <option value="Recibido">Recibido</option>
+                                <option value="Anulado">Anulado</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Divisa</label>
+                            <select class="form-control" id="divisa">
+                                <option value="Soles" selected>Soles</option>
+                                <option value="Dolares">Dolares</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Condicion de Pago</label>
+                            <input type="text" class="form-control"
+                                   placeholder="Pago en 5 cuotas" id="condicionPago">
+                        </div>
+                    </div>
+
+                    <br>
+                    <h2><b>Detalle</b></h2>
+
+
+                    <div class="container-lg">
+                        <div class="table-responsive-lg">
+                            <div class="table-wrapper">
+                                <div class="table-title">
+                                    <div class="row">
+                                        <label class="col-sm-2 col-form-label">Nombre de Producto</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" name="findProducto"
+                                                   id="findProducto" placeholder="Nombre de Producto"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <h2><b>Productos</b></h2>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <table class="d-none">
+                                    <tbody id="detallesOrden">
+                                    <tr id="row_{ID}">
+                                        <td class="d-none"><input type="hidden" value="{ID}" name="item_id[]"/>
+                                        </td>
+                                        <td>{NOMBRE}</td>
+                                        <td>S/. {PRECIO}</td>
+                                        <td><input type="number" value="1" min="1" name="cantidad[]" id="cantidad_{ID}"
+                                                   class="form-control col-sm-4"
+                                                   onchange="itemsHelper.calcularImporte({ID}, {PRECIO}, this.value);"/>
+                                        </td>
+                                        <td>S/. <span id="total_importe_{ID}">0</span></td>
+                                        <td><a href="#" class="btn btn-danger btn-xs"
+                                               onclick="itemsHelper.eliminarDetalle({ID});"><i
+                                                class="fas fa-trash-alt"></i></a></td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                                <table id="cargarItemProductos" class="table table-sm table-striped table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Precio (S/.)</th>
+                                        <th>Cantidad</th>
+                                        <th>Total (S/.)</th>
+                                        <th>Eliminar</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <br>
+                    <div class="container-fluid h-100">
+                        <div class="row w-100 align-items-center">
+                            <div class="col text-center">
+                                <button type="button" class="btn btn-danger"
+                                        data-dismiss="modal">Cancelar
+                                </button>
+                                <button id="btnGenerarOrden" class="btn btn-primary" data-dismiss="modal"
+                                        onclick="save()"><i class="fas fa-save"></i> Generar Orden</i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+</div>

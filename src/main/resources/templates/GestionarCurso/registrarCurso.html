@@ -1,0 +1,422 @@
+<div th:fragment="registrarCurso" id="registrarCurso">
+
+<link rel="stylesheet" href="../css/calendario.css" th:href="@{/css/calendario.css}" type="text/css" media="all">
+
+ 	 <!-- Main-body start -->
+      <div class="main-body">
+          <div class="page-wrapper">
+            
+              <!-- Page body start -->
+              <div class="page-body">
+                  <div class="row">
+                      <div class="col-md-12">
+                          <div class="card">
+                              <div class="card-header">
+                                  <h5>Registro de Curso</h5>
+                                  <!--<span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>-->
+                                     <div class="card-header-right">
+                              			<a th:href="@{/Curso/Paginado}" class="mr-2"><i class="ti-shift-left"></i> Atras</a>
+                              		</div>
+                              </div>
+                           
+                              <div class="card-block">
+                              
+                                  <form action="" th:action="@{/Curso/Guardar}" id="frmCurso" name="frmCurso" th:object=${curso} method="post" class="form-material row" >
+                                  
+                                  <input th:field="*{id}" type="text" name="id" id="id"  class="d-none form-control" required="">
+                                        
+                                  <div class="col-md-3">
+                                      <div class="form-group form-default">
+                                      	 <input th:field="*{nombre}" type="text" name="nombre" id="nombre"  class="form-control" required="">
+                                          <span class="form-bar"></span>
+                                          <label class="float-label">NOMBRE</label>
+                                      </div>
+                                   </div>
+                                   	
+                                   	<!-- 
+                                   <div class="col-md-1">
+                                      <div class="form-group form-default">
+                                      	 <input th:field="*{nivel}"type="text" name="nivel" id="nivel" class="form-control" required="">
+                                          <span class="form-bar"></span>
+                                          <label class="float-label">NIVEL</label>
+                                      </div>
+                                   </div>
+                                  
+                                  
+                                  <div class="col-md-1">
+                                      <div class="form-group form-default">
+                                      	 <input th:field="*{horas}" type="text" name="horas" id="horas"  class="form-control" required="">
+                                          <span class="form-bar"></span>
+                                          <label class="float-label">HORAS</label>
+                                      </div>
+                                   </div> -->
+                                   
+                                   <div class="col-md-2">
+                                        <div class="form-group frmGroupCurso" >    
+                                        		<label class="lblCurso" > TIPO DE CURSO</label>                                
+                                               <select  th:field="*{tipoDeCurso}" name="tipoDeCurso" id="tipoDeCurso" class="form-control cmbCurso" >
+                                                   <option value="">SELECCIONE</option>
+                                                   <option value="PRACTICO">PRACTICO</option>
+                                                   <option value="TEORICO">TEORICO</option>
+                                                   <option value="PRACTICO/TEORICO">TEORICO/PRACTICO</option>
+                                                   <option value="TALLER">TALLER</option>
+                                               </select>
+                                           
+                                       </div>
+                                  </div>
+                                  
+                                  
+                                  <div class="col-md-2">
+                                  
+	                                  <div class="form-group frmGroupCurso" >
+	                                  
+		                                    <label class="lblCurso"> DOCENTE</label>
+		                                  	<select th:field="*{instructor.dni}"  name="dniInstructor" id="dniInstructor" class="form-control cmbCurso"  required="">
+		                                             <option  value="">SELECCIONE</option>
+		                                             <option  th:each="docente: ${listaDocentes}"   th:text="${docente.apellidos}+' '+${docente.nombres}" th:value="${docente.dni}"></option>  
+		                                    </select>
+	                                  </div>
+                                  </div>
+                                  
+                                  
+                                  <div class="col-md-2">
+                                  
+                                  <div class="form-group frmGroupCurso">
+                                   	   <label class="lblCurso"> CERTIFICADO</label>
+                                  	   <select th:field="*{certificado.id}"  name="idCertificado" id="idCertificado" class="form-control cmbCurso" required>
+                                              <option  value=0>SELECCIONE</option>
+                                              <option th:each="certificado: ${listaCertificado}" th:text="${certificado.especialidad}" th:value="${certificado.id}"></option>  
+                                       </select>
+                                  </div>
+	                                  
+                                  </div>
+                                  
+                                  <!--  
+                                  <div class="col-md-1">
+                                      <div class="form-group form-default">
+                                      	 <input type="text" name="montoCurso" id="montoCurso" th:field="*{montoCurso}" class="form-control" required="">
+                                          <span class="form-bar"></span>
+                                          <label class="float-label">MONTO</label>
+                                      </div>
+                                   	</div>
+                                  -->
+                                  <div class="col-12 my-1 ">
+                                  
+                                   	
+                                  <label class="lblCurso"> <strong>HORARIO</strong> </label>
+                                  
+                                  <div class="row">
+
+                                  	 <div class="col-md-3 ">
+                                  	 
+                                  	 	<input th:field="*{horario.id}" name="idHorario" id="idHorario" th:value="*{horario.id}" class="d-none"/>
+                                  
+		                                  <div class="form-group">
+		                                   	   <label class="lblCurso"> TURNO</label>
+		                                  	   <select th:field="*{horario.turno}"  name="turno" id="turno" class="form-control"  required="">
+		                                             <option  value="">SELECCIONE</option>
+		                                             <option  value="MAÑANA">MAÑANA</option>
+		                                             <option  value="TARDE">TARDE</option>
+		                                       </select>
+		                                  </div>
+		                                  
+	                                  </div>
+	                                  
+	                                   <div class="col-md-3 ">
+                                  
+		                                  <div class="form-group">
+		                                   	   <label class="lblCurso"> DIA</label>
+		                                  	   <select th:field="*{horario.dia}"  name="dia" id="dia" class="form-control"  required="">
+		                                             <option  value="">SELECCIONE</option>
+		                                             <option  value="LUNES">LUNES</option>
+		                                             <option  value="MARTES">MARTES</option>
+		                                             <option  value="MIERCOLES">MIERCOLES</option>
+		                                             <option  value="JUEVES">JUEVES</option>
+		                                             <option  value="VIERNES">VIERNES</option>
+		                                             <option  value="SABADO">SABADO</option>
+		                                             <option  value="DOMINGO">DOMINGO</option>
+		                                             
+		                                       </select>
+		                                  </div>
+		                                  
+	                                  </div>
+	                                  
+	                                  
+	                                  
+	                                
+                                  </div>
+                                  
+                                 
+                                  
+                                  </div>
+                                  
+                                 
+                                   
+                                   <div class="col-md-6">
+                                     <div class="form-group">
+                                    	 <label class="lblCurso"> DESCRIPCION</label>
+                                        <textarea th:field="*{descripcion}" id="descripcion" name="descripcion" class="form-control"></textarea>
+                                        <span class="form-bar"></span>
+                                        
+                                    </div>
+                                   </div>
+                                   
+                                  
+                                  <!--  
+                                	<input type="text" name="horaDeInicio" id="horaDeInicio" th:field="*{horario.horaDeInicio}"  class="d-none form-control" required="">
+                                	<input type="text" name="horaDeFin" id="horaDeFin" th:field="*{horario.horaDeFin}"  class="d-none form-control" required="">
+                                	-->
+								<div class="col-12 my-3">
+								
+								
+								<!--  
+								<table>
+									    <tr>
+									      <th class="day-name text-center">Lunes <i class="d-none ti-close ml-2" id="RL" onclick="eliminarHorario('L')" style="color: red; cursor:pointer;"></i> </th>
+									      <th class="day-name text-center">Martes<i class="d-none ti-close ml-2" id="RM" onclick="eliminarHorario('M')" style="color: red; cursor:pointer;"></i> </th>
+									      <th class="day-name text-center">Miercoles <i class="d-none ti-close ml-2" id="RX" onclick="eliminarHorario('X')" style="color: red; cursor:pointer;"></i> </th>
+									      <th class="day-name text-center">Jueves <i class="d-none ti-close ml-2" id="RJ" onclick="eliminarHorario('J')" style="color: red; cursor:pointer;"></i> </th>
+									      <th class="day-name text-center">Viernes <i class="d-none ti-close ml-2" id="RV" onclick="eliminarHorario('V')" style="color: red; cursor:pointer;"></i> </th>
+									      <th class="day-name text-center">Sabado <i class="d-none ti-close ml-2" id="RS" onclick="eliminarHorario('S')" style="color: red; cursor:pointer;"></i> </th>
+									      <th class="day-name text-center">Domingo <i class="d-none ti-close ml-2" id="RD" onclick="eliminarHorario('D')" style="color: red; cursor:pointer;"></i> </th>
+									    </tr>
+									    <tr>
+									      <td onclick="abrirModalHorario('L')" class="day pr-3" id="L" ></td>
+									      <td onclick="abrirModalHorario('M')" class="day pr-3" id="M" ></td>
+									      <td onclick="abrirModalHorario('X')" class="day pr-3" id="X" ></td>
+									      <td onclick="abrirModalHorario('J')" class="day pr-3" id="J" ></td>
+									      <td onclick="abrirModalHorario('V')" class="day pr-3" id="V" ></td>
+									      <td onclick="abrirModalHorario('S')" class="day pr-3" id="S" ></td>
+									      <td onclick="abrirModalHorario('D')" class="day pr-3" id="D" ></td>
+
+									    </tr> 
+								</table>
+								-->
+								</div>
+									
+
+                                   	<div class="col-md-12">
+                                   	
+                                   		<button type="button" onclick="guardarCurso()" class="btn waves-effect waves-light btn-success btn-outline-success"> <i class="ti-save"></i> Guardar</button>
+                                   	</div>
+                                  </form>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+               </div>
+               <!-- Page body end -->
+           </div>
+       </div>
+       <!-- Main-body end -->
+       
+		
+		<div class="modal fade" id="modalHorario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Nuevo Horario</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		      
+		      
+		       <div class="form-group">
+		            <label for="message-text" class="col-form-label">Hora Inicio:</label>
+		
+		              <div class="row justify-content-center">
+		
+		                <div class="col-3">
+		
+		                  <select id="mHoraInicio" class="form-control form-control-sm">
+		                    <option th:each="hora: ${horas}" th:text="${hora}" th:value="${hora}"></option>
+		                  </select>
+		                </div>
+		              
+		              <div class="col-1">
+		                :
+		              </div>
+		              <div class="col-3">
+		                <select id="mMinInicio" class="form-control form-control-sm">
+		                    <option th:each="minuto: ${minutos}" th:text="${minuto}" th:value="${minuto}"></option>
+		                </select>
+		              </div>
+		
+		              </div>
+		          </div>
+		      
+			     <div class="form-group">
+		            <label for="message-text" class="col-form-label">Hora Termino:</label>
+		
+		              <div class="row justify-content-center">
+		
+		                <div class="col-3">
+		
+		                  <select id="mHoraTermino" class="form-control form-control-sm">
+		                    <option th:each="hora: ${horas}" th:text="${hora}" th:value="${hora}"></option>
+		                  </select>
+		                </div>
+		              
+		              <div class="col-1">
+		                :
+		              </div>
+		              <div class="col-3">
+		                <select id="mMinTermino" class="form-control form-control-sm">
+		                  <option th:each="minuto: ${minutos}" th:text="${minuto}" th:value="${minuto}"></option>
+		                </select>
+		              </div>
+		
+		              </div>
+		          </div>
+			        
+		        
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal" >Cerrar</button>
+		        <button type="button" class="btn btn-primary" onclick="guardarHorario()">Agregar</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		       
+		       
+	    <script>
+	
+	    	var dia='';
+	    	
+	    	/*function prueba(){
+	    		console.log(${mensaje});
+	    		toastr.success('Guardado Correctamente','Mensaje de Informacion',{
+	    			closeButton:true,
+	    			positionClass: "toast-bottom-right"
+	    		});
+	    	}*/
+	    	
+		    function abrirModalHorario(valor){
+		    	
+			     dia=valor;    
+			     $('#modalHorario').modal('show');  
+		    	
+		    }
+	    
+	       function guardarHorario(){
+	    	  
+	    	 var mHoraInicio= $('#mHoraInicio').val();
+	    	 var mMinInicio= $('#mMinInicio').val();
+	    	 var mHoraTermino= $('#mHoraTermino').val();
+	    	 var mMinTermino= $('#mMinTermino').val();
+	    	 
+	    	 var HoraInicio='';
+	    	 var HoraTermino='';
+	    	 
+	    	 HoraInicio=mHoraInicio+':'+mMinInicio;
+	    	 HoraTermino=mHoraTermino+':'+mMinTermino;
+	    	 
+	    	 $('#horaDeInicio').val(HoraInicio);
+	    	 $('#horaDeFin').val(HoraTermino);
+	    	 
+	    	 
+	    	  var trHTML = '<div class="alert alert-success text-center" role="alert"> Hora Inicio: '+ HoraInicio +'</div>';
+	    	  trHTML += '<div class="alert alert-danger text-center" role="alert"> Hora Termino: '+ HoraTermino  +'</div>';
+	    	  //var iconoEliminarHorario='<i class="ti-close ml-2" onclick="eliminarHorario("L")" style="color: red; cursor:pointer;"></i>';
+	    	  
+	    	  switch(dia) {
+	    	  
+		    	  case 'L':
+		    		  $('#L').empty()
+		 	    	  $('#L').append(trHTML)
+		 	    	  $('#RL').removeClass("d-none");
+		 	    	  $("#L").css({"background-color":"#F9F9FA"});
+		    	      break;
+		    	  case 'M':
+		    		  $('#M').empty()
+		 	    	  $('#M').append(trHTML)
+		 	    	  $('#RM').removeClass("d-none");
+		 	    	  $("#M").css({"background-color":"#F9F9FA"});
+		    	      break;
+		    	  case 'X':
+		    		  $('#X').empty()
+		 	    	  $('#X').append(trHTML)
+		 	    	  $('#RX').removeClass("d-none");
+		 	    	  $("#X").css({"background-color":"#F9F9FA"});
+		    	      break;
+		    	  case 'J':
+		    		  $('#J').empty()
+		 	    	  $('#J').append(trHTML)
+		 	    	  $('#RJ').removeClass("d-none");
+		 	    	  $("#J").css({"background-color":"#F9F9FA"});
+		    	      break;
+		    	  case 'V':
+		    		  $('#V').empty()
+		 	    	  $('#V').append(trHTML)
+		 	    	  $('#RV').removeClass("d-none");
+		 	    	  $("#V").css({"background-color":"#F9F9FA"});
+		    	      break;
+		    	  case 'S':
+		    		  $('#S').empty()
+		 	    	  $('#S').append(trHTML)
+		 	    	  $('#RS').removeClass("d-none");
+		 	    	  $("#S").css({"background-color":"#F9F9FA"});
+		    	      break;
+		    	  case 'D':
+		    		  $('#D').empty()
+		 	    	  $('#D').append(trHTML)
+		 	    	  $('#RD').removeClass("d-none");
+		 	    	  $("#D").css({"background-color":"#F9F9FA"});
+		    	      break;
+	
+		    	}
+	    	  
+	    	  	dia='';
+	    	 	$('#modalHorario').modal('hide')
+	    	 
+	      	}
+	      
+	       function eliminarHorario(valor){
+	    	   
+	    	   switch(valor) {
+	    	   case 'L':
+	    		   $('#L').empty()
+	    		   $('#RL').addClass("d-none");
+	    		   $("#L").css({"background-color":"#FCFDFE"});
+	    		   break;
+	    	   case 'M':
+	    		   $('#M').empty()
+	    		   $('#RM').addClass("d-none");
+	    		   $("#M").css({"background-color":"#FCFDFE"});
+	    		   break;
+	    	   case 'X':
+	    		   $('#X').empty()
+	    		   $('#RX').addClass("d-none");
+	    		   $("#X").css({"background-color":"#FCFDFE"});
+	    		   break;
+	    	   case 'J':
+	    		   $('#J').empty()
+	    		   $('#RJ').addClass("d-none");
+	    		   $("#J").css({"background-color":"#FCFDFE"});
+	    		   break;
+	    	   case 'V':
+	    		   $('#V').empty()
+	    		   $('#RV').addClass("d-none");
+	    		   $("#V").css({"background-color":"#FCFDFE"});
+	    		   break;
+	    	   case 'S':
+	    		   $('#S').empty()
+	    		   $('#RS').addClass("d-none");
+	    		   $("#S").css({"background-color":"#FCFDFE"});
+	    		   break;
+	    	   case 'D':
+	    		   $('#D').empty()
+	    		   $('#RD').addClass("d-none");
+	    		   $("#D").css({"background-color":"#FCFDFE"});
+	    		   break;
+	    	   }
+	    	   
+	       }
+	      	
+	        
+   	 	</script>
+    
+</div>

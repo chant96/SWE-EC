@@ -1,0 +1,132 @@
+<div th:fragment="registrarEstudiante" id="registrarEstudiante">
+
+ 	 <!-- Main-body start -->
+      <div class="main-body">
+          <div class="page-wrapper">
+            
+              <!-- Page body start -->
+              <div class="page-body">
+                  <div class="row">
+                      <div class="col-md-12">
+                          <div class="card">
+                              <div class="card-header">
+                                  <h5>Registro de Estudiante</h5>
+                                  <!--<span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>-->
+                                     <div class="card-header-right">
+                              			<a th:href="@{/Estudiante/Paginado}" class="mr-2"><i class="ti-shift-left"></i> Atras</a>
+                              		</div>
+                              </div>
+                           
+                              <div class="card-block">
+                              
+                                  <form id="frmEstudiante" name=frmEstudiante action="" th:action="@{/Estudiante/Guardar}" th:object=${estudiante} method="post" class="form-material row" >
+                                  
+                                  <div class="col-2">
+                                      <div class="form-group form-default">
+                                      	 <input type="text" name="dni" id="dni" th:field="*{dni}" class="form-control" required="">
+                                          <span class="form-bar"></span>
+                                          <label class="float-label">DNI</label>
+                                      </div>
+                                   	</div>
+                                   	
+                                   	<div class="col-md-10"></div>
+                                   	
+                               		<div class="col-md-3">
+                                      <div class="form-group form-default">
+                                      	 <input type="text" name="nombres" id="nombres" th:field="*{nombres}" class="form-control" required="">
+                                          <span class="form-bar"></span>
+                                          <label class="float-label">Nombres</label>
+                                      </div>
+                                   	</div>
+                                   	
+                                   	<div class="col-md-3">
+                                      <div class="form-group form-default">
+                                      	 <input type="text" name="apellidos" id="apellidos" th:field="*{apellidos}"  class="form-control" required="">
+                                          <span class="form-bar"></span>
+                                          <label class="float-label">Apellidos</label>
+                                      </div>
+                                   	</div>
+                                   	
+                               		<div class="col-md-4">
+                                      <div class="form-group form-default">
+                                      	 <input type="text" name="direccion" id="direccion" th:field="*{direccion}"  class="form-control" required="">
+                                          <span class="form-bar"></span>
+                                          <label class="float-label">Direccion</label>
+                                      </div>
+                                   	</div>
+                                   	
+                                   	<div class="col-md-2">
+                                      <div class="form-group form-default">
+                                      	 <input type="text" name="telefono" id="telefono" th:field="*{telefono}"  class="form-control" required="">
+                                          <span class="form-bar"></span>
+                                          <label class="float-label">Telefono</label>
+                                      </div>
+                                   	</div>
+                                   	
+
+                                   	
+                                   	<div class="col-md-3">
+                                   	 <div class="form-group form-default">
+                                          <input type="text" name="correoElectronico" id="correoElectronico" th:field="*{correoElectronico}"  class="form-control" required="">
+                                          <span class="form-bar"></span>
+                                          <label class="float-label">Email (exa@gmail.com)</label>
+                                      </div>
+                                   	</div>
+                                   	
+                                   		<div class="col-md-2">
+                                      <div class="form-group form-default">
+                                      	 <input type="text" name="departamento" id="departamento" th:field="*{departamento}"  class="form-control" required="">
+                                          <span class="form-bar"></span>
+                                          <label class="float-label">Departamento</label>
+                                      </div>
+                                   	</div>
+                                   	
+                                   	
+                                   		<div class="col-md-2">
+                                      <div class="form-group form-default">
+                                      	 <input type="text" name="provincia" id="provincia" th:field="*{provincia}"  class="form-control" required="">
+                                          <span class="form-bar"></span>
+                                          <label class="float-label">Provincia</label>
+                                      </div>
+                                   	</div>
+                                   	
+                                   	
+                                   		<div class="col-md-2">
+                                      <div class="form-group form-default">
+                                      	 <input type="text" name="distrito" id="distrito" th:field="*{distrito}"  class="form-control" required="">
+                                          <span class="form-bar"></span>
+                                          <label class="float-label">Distrito</label>
+                                      </div>
+                                   	</div>
+                                   	
+                                   	<div class="col-md-1">
+                                   	
+                                   		<div class="form-group" style="margin-top: -10px">
+                                   		
+                                   			<label >Fecha</label>
+                                   			<input type="date" id="fechaNacimiento" name="fechaNacimiento" th:field="*{fechaNacimiento}" required="">
+                                   			
+                                   		</div>
+                                   		
+                                   	</div>
+
+									<hr/>
+									
+                                   	<div class="col-md-12">
+                                   	
+                                   		<button type="button" onclick="guardarEstudiante()"  class="btn waves-effect waves-light btn-success btn-outline-success"> <i class="ti-save"></i> Guardar</button>
+
+                                   		
+                                   	</div>
+                                  </form>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+               </div>
+               <!-- Page body end -->
+           </div>
+       </div>
+       <!-- Main-body end -->
+	
+</div>
